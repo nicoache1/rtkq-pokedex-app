@@ -1,6 +1,6 @@
-import {TextStyle} from 'react-native';
+import { TextStyle } from 'react-native'
 
-import {TypographyScale, TypographyStyle} from './types';
+import { TypographyScale, TypographyStyle } from './types'
 
 export const Typography: TypographyStyle<TextStyle> = {
   [TypographyScale.H0_HEADLINE]: {
@@ -20,22 +20,23 @@ export const Typography: TypographyStyle<TextStyle> = {
     letterSpacing: 0.15,
   },
   [TypographyScale.SUBTITLE1]: {
-    fontSize: 22,
+    fontSize: 18,
     letterSpacing: 0.16,
     lineHeight: 24,
   },
   [TypographyScale.SUBTITLE2]: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: 'bold',
     letterSpacing: 0.11,
     lineHeight: 24,
   },
   [TypographyScale.BODY1]: {
-    fontSize: 18,
+    fontSize: 16,
     letterSpacing: 0.47,
   },
   [TypographyScale.BODY2]: {
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight: 'bold',
     letterSpacing: 0.27,
   },
   [TypographyScale.BUTTON]: {
@@ -45,15 +46,14 @@ export const Typography: TypographyStyle<TextStyle> = {
     textTransform: 'uppercase',
   },
   [TypographyScale.CAPTION]: {
-    fontSize: 16,
+    fontSize: 13,
     letterSpacing: 0.43,
+    fontWeight: 'bold',
     lineHeight: 16,
   },
   [TypographyScale.OVERLINE]: {
     fontSize: 14,
-    fontWeight: 'bold',
-    letterSpacing: 1.5,
+    letterSpacing: 0.43,
     lineHeight: 16,
-    textTransform: 'uppercase',
   },
-};
+}

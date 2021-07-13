@@ -11,7 +11,7 @@ interface LayoutProps {
 }
 
 export const SceneContainer: React.FunctionComponent<LayoutProps> = ({
-  edges = ['top', 'bottom'],
+  edges = ['left', 'right'],
   style,
   children,
 }) => (
