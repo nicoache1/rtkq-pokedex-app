@@ -20,6 +20,7 @@ import { StyledContainer } from 'src/components/StyledContainer'
 import { StyledText } from 'src/components/StyledText'
 import { capitalize } from 'lodash'
 import { StyledView } from 'src/components/StyledView'
+import { TypeBadge } from 'src/components/TypeBadge'
 
 interface PokemonDetailProps
   extends StackScreenProps<MainStackParamList, Routes.PokemonDetail> {}
@@ -73,11 +74,15 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
     return <ActivityIndicator />
   }
 
+  const renderBadges: JSX.Element[] = data.types.map((typeItem, index) => (
+    <TypeBadge key={`${index}`} {...typeItem.type} />
+  ))
+
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: lightenDarkenColor(data.types[0].type.color, 30),
+        backgroundColor: lightenDarkenColor(data.types[0].type.color, 20),
       }}>
       <SceneContainer
         style={{ flex: 1, paddingTop: HEADER_HEIGHT }}
@@ -85,20 +90,30 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
         <StyledContainer
           color={PaletteScale.TRANSPARENT}
           style={{ flexDirection: 'row' }}>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, justifyContent: 'center' }}>
             <StyledText
               typography={TypographyScale.H3_HEADLINE}
               color={PaletteScale.ON_SURFACE}>
               {capitalize(pokemonName)}
             </StyledText>
           </View>
-          <View style={{ flex: 1, alignItems: 'flex-end' }}>
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'flex-end',
+              justifyContent: 'center',
+            }}>
             <StyledText
-              typography={TypographyScale.H3_HEADLINE}
+              typography={TypographyScale.SUBTITLE2}
               color={PaletteScale.ON_SURFACE}>
               {getPokedexNumber(data.id)}
             </StyledText>
           </View>
+        </StyledContainer>
+        <StyledContainer
+          color={PaletteScale.TRANSPARENT}
+          style={{ flexDirection: 'row' }}>
+          {renderBadges}
         </StyledContainer>
         <StyledContainer color={PaletteScale.TRANSPARENT}>
           <PokeballIcon

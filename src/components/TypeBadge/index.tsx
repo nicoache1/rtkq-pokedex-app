@@ -1,6 +1,6 @@
 import { capitalize } from 'lodash'
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { lightenDarkenColor } from 'src/styles/Palette'
 import { TypographyScale, PaletteScale } from 'src/styles/types'
 import { StyledText } from '../StyledText'
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 
 export const TypeBadge: React.FC<TypeBadgeProps> = ({ color, name }) => {
   return (
-    <StyledView
+    <View
       style={[
         {
           backgroundColor: lightenDarkenColor(color, 50),
@@ -36,6 +36,6 @@ export const TypeBadge: React.FC<TypeBadgeProps> = ({ color, name }) => {
         color={PaletteScale.ON_SURFACE}>
         {capitalize(name)}
       </StyledText>
-    </StyledView>
+    </View>
   )
 }

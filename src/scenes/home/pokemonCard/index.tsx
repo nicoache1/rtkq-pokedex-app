@@ -45,7 +45,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = memo(
         onPress={onPress}
         style={[
           styles.container,
-          { backgroundColor: lightenDarkenColor(data.types[0].type.color, 30) },
+          { backgroundColor: lightenDarkenColor(data.types[0].type.color, 20) },
         ]}>
         <PokeballIcon
           style={styles.pokeballIcon}
