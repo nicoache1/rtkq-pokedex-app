@@ -63,8 +63,18 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
     }
   }, [data])
 
-  const renderItem: FlatListProps<Pokemon>['renderItem'] = ({ item }) => (
-    <PokemonCard name={item.name} />
+  const onPressCard = (name: string) => () =>
+    navigation.navigate(Routes.PokemonDetail, { name })
+
+  const renderItem: FlatListProps<Pokemon>['renderItem'] = ({
+    item,
+    index,
+  }) => (
+    <PokemonCard
+      name={item.name}
+      onPress={onPressCard(item.name)}
+      index={index + 1}
+    />
   )
 
   const keyExtractor: FlatListProps<Pokemon>['keyExtractor'] = (item, index) =>
@@ -94,8 +104,8 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
         renderItem={renderItem}
         onEndReached={loadMoreData}
         getItemLayout={getItemLayout}
-        initialNumToRender={40}
-        onEndReachedThreshold={0.7}
+        initialNumToRender={20}
+        onEndReachedThreshold={0.8}
         maxToRenderPerBatch={16}
         windowSize={height - 150}
         refreshing={isLoading}

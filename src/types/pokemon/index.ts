@@ -103,7 +103,7 @@ export const deserializePokemon = (data: any): Pokemon => ({
   moves: deserializeMoves(data.moves ?? []),
   species: data.species,
   sprite:
-    data.sprites['official-artwork']?.front_default ??
+    data.sprites.other['official-artwork']?.front_default ??
     data.sprites?.front_default,
   stats: deserializeStats(data.stats ?? []),
   types: deserializeTypes(data.types ?? []),

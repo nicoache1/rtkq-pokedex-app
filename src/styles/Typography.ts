@@ -18,6 +18,7 @@ export const Typography: TypographyStyle<TextStyle> = {
   [TypographyScale.H3_HEADLINE]: {
     fontSize: 28,
     letterSpacing: 0.15,
+    fontWeight: 'bold',
   },
   [TypographyScale.SUBTITLE1]: {
     fontSize: 18,

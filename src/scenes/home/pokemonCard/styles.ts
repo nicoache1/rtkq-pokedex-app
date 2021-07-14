@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     width: width / 2 - 16,
     margin: 8,
     paddingHorizontal: 20,
+    paddingVertical: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -39,10 +40,10 @@ export const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     position: 'absolute',
-    height: 110,
-    width: 110,
+    height: 100,
+    width: 100,
   },
   image: {
-    height: 120,
+    height: 100,
   },
 })
