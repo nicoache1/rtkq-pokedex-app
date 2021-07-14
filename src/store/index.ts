@@ -1,4 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import thunk from 'redux-thunk'
 import { pokemonApi } from './APIs/pokemonSlice'
 
@@ -16,6 +17,8 @@ const store = configureStore({
   reducer: rootReducer,
   middleware: middlewares,
 })
+
+setupListeners(store.dispatch)
 
 export type AppDispatch = typeof store.dispatch
 

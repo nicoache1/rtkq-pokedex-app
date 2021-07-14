@@ -45,6 +45,8 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
   route,
 }) => {
   useLayoutEffect(() => {
+    const goBack = () => navigation.goBack()
+
     const options: StackNavigationOptions = {
       headerTitleStyle: {
         fontSize: 30,
@@ -57,7 +59,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
       },
       headerTransparent: true,
       headerLeft: () => (
-        <HeaderButton>
+        <HeaderButton onPress={goBack}>
           <BackIcon height={32} width={32} fill={'#fff'} />
         </HeaderButton>
       ),
