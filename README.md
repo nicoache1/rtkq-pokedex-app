@@ -25,4 +25,4 @@ First example that comes
 
 ## Acknowledgements
 
-- [@wcandillon](https://github.com/wcandillon) for `react-native-redash` and all of your amazing videos and courses.
+- [Dribble design inspiration](https://dribbble.com/shots/6545819-Pokedex-App).
