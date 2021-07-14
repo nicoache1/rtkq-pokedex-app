@@ -1,0 +1,2 @@
+export const HEADER_HEIGHT = 180
+export const POKEBALL_SIZE = HEADER_HEIGHT + 100

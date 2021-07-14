@@ -4,34 +4,38 @@ import {
 } from '@react-navigation/stack'
 import React from 'react'
 import { useLayoutEffect } from 'react'
-import { Dimensions, FlatListProps } from 'react-native'
+import { FlatListProps } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import { SceneContainer } from 'src/components/SceneContainer'
 import { Routes } from 'src/navigation/routes'
 import { MainStackParamList } from 'src/navigation/stacks/MainStack'
-import { useGetAllPokemonQuery } from 'src/store/APIs/pokemonSlice'
-import { Pokemon } from 'src/types/pokemon'
-import { PokemonCard } from './pokemonCard'
+import { ItemCard } from './ItemCard'
 import { styles } from './styles'
 import PokeballIcon from 'src/assets/icons/pokeball.svg'
 import { colorTranslucent } from 'src/styles/Palette'
-import { PaletteScale } from 'src/styles/types'
-import { useState } from 'react'
-import { Pokedex } from 'src/types/pokedex'
-import { useEffect } from 'react'
-import { concat } from 'lodash'
+import { PaletteScale, TypographyScale } from 'src/styles/types'
+import {
+  CARD_HEIGHT,
+  HEADER_HEIGHT,
+  POKEBALL_SIZE,
+  Sections,
+} from './constants'
+import { Items } from './types'
+import { StyledText } from 'src/components/StyledText'
+import { StyledContainer } from 'src/components/StyledContainer'
 
 interface HomeProps extends StackScreenProps<MainStackParamList, Routes.Home> {}
-
-const HEADER_HEIGHT = 150
-const POKEBALL_SIZE = HEADER_HEIGHT + 100
-
-const { height } = Dimensions.get('window')
 
 export const Home: React.FC<HomeProps> = ({ navigation }) => {
   useLayoutEffect(() => {
     const options: StackNavigationOptions = {
-      headerTitle: 'Pokedex',
+      headerTitle: () => (
+        <StyledContainer color={PaletteScale.TRANSPARENT}>
+          <StyledText typography={TypographyScale.H3_HEADLINE}>
+            What pokemon are you looking for?
+          </StyledText>
+        </StyledContainer>
+      ),
       headerTitleAlign: 'left',
       headerTitleStyle: {
         fontSize: 30,
@@ -39,7 +43,7 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
       headerStyle: {
         elevation: 0,
         shadowOffset: { height: 0, width: 0 },
-        height: 150,
+        height: HEADER_HEIGHT,
       },
       headerTransparent: true,
     }
@@ -47,43 +51,24 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
     navigation.setOptions(options)
   }, [])
 
-  const [offset, setOffset] = useState<number>(0)
+  const onPressCard = (route: Routes) => () => navigation.navigate(route)
 
-  const loadMoreData = () => {
-    setOffset(prevState => prevState + 20)
-  }
-
-  const { data, isLoading } = useGetAllPokemonQuery(offset)
-
-  const [currentData, setCurrentData] = useState<Pokedex[]>([])
-
-  useEffect(() => {
-    if (data) {
-      setCurrentData(prevData => concat(prevData, data))
-    }
-  }, [data])
-
-  const onPressCard = (name: string) => () =>
-    navigation.navigate(Routes.PokemonDetail, { name })
-
-  const renderItem: FlatListProps<Pokemon>['renderItem'] = ({
-    item,
-    index,
-  }) => (
-    <PokemonCard
+  const renderItem: FlatListProps<Items>['renderItem'] = ({ item, index }) => (
+    <ItemCard
       name={item.name}
-      onPress={onPressCard(item.name)}
-      index={index + 1}
+      onPress={onPressCard(item.routes)}
+      color={item.color}
     />
   )
 
-  const keyExtractor: FlatListProps<Pokemon>['keyExtractor'] = (item, index) =>
+  const keyExtractor: FlatListProps<Items>['keyExtractor'] = (item, index) =>
     `${item.id} ${index}`
 
-  const getItemLayout: FlatListProps<Pokemon>['getItemLayout'] = (
-    _,
+  const getItemLayout: FlatListProps<Items>['getItemLayout'] = (_, index) => ({
+    length: CARD_HEIGHT,
+    offset: CARD_HEIGHT * index,
     index,
-  ) => ({ length: 130, offset: 130 * index, index })
+  })
 
   return (
     <SceneContainer style={styles.container} edges={['bottom']}>
@@ -97,19 +82,21 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
         width={POKEBALL_SIZE}
         fill={colorTranslucent(PaletteScale.ON_SURFACE_LOW_EMPHASIS, 0.1)}
       />
-      <FlatList
-        numColumns={2}
-        keyExtractor={keyExtractor}
-        data={currentData}
-        renderItem={renderItem}
-        onEndReached={loadMoreData}
-        getItemLayout={getItemLayout}
-        initialNumToRender={20}
-        onEndReachedThreshold={0.8}
-        maxToRenderPerBatch={16}
-        windowSize={height - 150}
-        refreshing={isLoading}
-      />
+      <StyledContainer
+        color={PaletteScale.TRANSPARENT}
+        style={{
+          borderBottomEndRadius: 16,
+          borderBottomLeftRadius: 16,
+        }}>
+        <FlatList
+          bounces={false}
+          numColumns={2}
+          keyExtractor={keyExtractor}
+          data={Sections}
+          renderItem={renderItem}
+          getItemLayout={getItemLayout}
+        />
+      </StyledContainer>
     </SceneContainer>
   )
 }
