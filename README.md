@@ -19,7 +19,7 @@ First example that comes
 <br></br>
 
 <video controls="true" allowfullscreen="true" width="200" height="450">
- <source src="./src/assets/video/demo.mp4" type="video/mp4">
+ <source src="https://res.cloudinary.com/dpk1cmqsw/video/upload/v1626276562/Simulator_Screen_Recording_-_iPhone_11_-_2021-07-14_at_12.23.40_xwovqc.mov">
 </video>
 <br></br>
 
