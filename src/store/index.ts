@@ -1,9 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
+import { pokemonApi } from './APIs/pokemonSlice'
 
 import { ReduxState, rootReducer } from './rootReducer'
 
-const middlewares = [thunk]
+const middlewares = [thunk, pokemonApi.middleware]
 
 // TODO: uncomment this to use the redux debugger on flipper
 if (__DEV__) {
@@ -12,8 +13,8 @@ if (__DEV__) {
 }
 
 const store = configureStore({
-  middleware: middlewares,
   reducer: rootReducer,
+  middleware: middlewares,
 })
 
 export type AppDispatch = typeof store.dispatch
