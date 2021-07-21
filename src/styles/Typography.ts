@@ -4,19 +4,22 @@ import { TypographyScale, TypographyStyle } from './types'
 
 export const Typography: TypographyStyle<TextStyle> = {
   [TypographyScale.H0_HEADLINE]: {
-    fontSize: 72,
-    fontWeight: '900',
+    fontSize: 54,
+    letterSpacing: 0.15,
+    fontWeight: 'bold',
   },
   [TypographyScale.H1_HEADLINE]: {
-    fontSize: 54,
-    fontWeight: '900',
-    letterSpacing: 0.24,
+    fontSize: 36,
+    letterSpacing: 0.15,
+    fontWeight: 'bold',
   },
   [TypographyScale.H2_HEADLINE]: {
-    fontSize: 36,
+    fontSize: 28,
+    letterSpacing: 0.15,
+    fontWeight: 'bold',
   },
   [TypographyScale.H3_HEADLINE]: {
-    fontSize: 28,
+    fontSize: 22,
     letterSpacing: 0.15,
     fontWeight: 'bold',
   },
@@ -49,7 +52,6 @@ export const Typography: TypographyStyle<TextStyle> = {
   [TypographyScale.CAPTION]: {
     fontSize: 13,
     letterSpacing: 0.43,
-    fontWeight: 'bold',
     lineHeight: 16,
   },
   [TypographyScale.OVERLINE]: {
