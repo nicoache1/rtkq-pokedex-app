@@ -9,7 +9,7 @@ import { PaletteScale, TypographyScale } from 'src/styles/types'
 import { colorTranslucent, lightenDarkenColor } from 'src/styles/Palette'
 import { styles } from './styles'
 import { capitalize } from 'lodash'
-import { CARD_HEIGHT } from '../constants'
+import { CARD_HEIGHT } from '../../constants'
 
 interface ItemCardProps {
   name: Pokedex['name']

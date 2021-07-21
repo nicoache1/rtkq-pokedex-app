@@ -19,7 +19,6 @@ import { Dimensions } from 'react-native'
 import { StyledContainer } from 'src/components/StyledContainer'
 import { StyledText } from 'src/components/StyledText'
 import { capitalize } from 'lodash'
-import { StyledView } from 'src/components/StyledView'
 import { TypeBadge } from 'src/components/TypeBadge'
 
 interface PokemonDetailProps
@@ -94,7 +93,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
           style={{ flexDirection: 'row' }}>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <StyledText
-              typography={TypographyScale.H3_HEADLINE}
+              typography={TypographyScale.H2_HEADLINE}
               color={PaletteScale.ON_SURFACE}>
               {capitalize(pokemonName)}
             </StyledText>

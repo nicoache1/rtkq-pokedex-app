@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
-import { CARD_HEIGHT } from '../constants'
+import { CARD_HEIGHT } from '../../constants'
 
 const { width } = Dimensions.get('window')
 

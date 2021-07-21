@@ -1,11 +1,12 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import thunk from 'redux-thunk'
+import { newsApi } from './APIs/newsSlice'
 import { pokemonApi } from './APIs/pokemonSlice'
 
 import { ReduxState, rootReducer } from './rootReducer'
 
-const middlewares = [thunk, pokemonApi.middleware]
+const middlewares = [thunk, pokemonApi.middleware, newsApi.middleware]
 
 // TODO: uncomment this to use the redux debugger on flipper
 if (__DEV__) {

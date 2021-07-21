@@ -5,4 +5,7 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flex: 1,
   },
+  title: {
+    flex: 1,
+  },
 })

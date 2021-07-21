@@ -34,7 +34,7 @@ export const HeaderLargeTitle: React.FC<HeaderLargeTitleProps> = ({
       </HeaderButton>
       <StyledContainer style={{ flex: 1, paddingHorizontal: 20 }}>
         <StyledText
-          typography={TypographyScale.H3_HEADLINE}
+          typography={TypographyScale.H2_HEADLINE}
           style={styles.title}>
           {title}
         </StyledText>
