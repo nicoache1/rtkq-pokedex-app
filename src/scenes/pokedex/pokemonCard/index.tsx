@@ -1,16 +1,17 @@
+import { capitalize } from 'lodash'
 import React, { memo } from 'react'
-import { Image, Pressable, View } from 'react-native'
+import { Pressable, View } from 'react-native'
+import FastImage from 'react-native-fast-image'
+import PokeballIcon from 'src/assets/icons/pokeball.svg'
 import { StyledText } from 'src/components/StyledText'
 import { StyledView } from 'src/components/StyledView'
-import { useGetPokemonByNameQuery } from 'src/store/APIs/pokemonSlice'
-import { Pokedex } from 'src/types/pokedex'
-import PokeballIcon from 'src/assets/icons/pokeball.svg'
-import { PaletteScale, TypographyScale } from 'src/styles/types'
-import { colorTranslucent, lightenDarkenColor } from 'src/styles/Palette'
-import { styles } from './styles'
 import { TypeBadge } from 'src/components/TypeBadge'
-import { capitalize } from 'lodash'
-import FastImage from 'react-native-fast-image'
+import { useGetPokemonByNameQuery } from 'src/store/APIs/pokemonSlice'
+import { colorTranslucent, lightenDarkenColor } from 'src/styles/Palette'
+import { PaletteScale, TypographyScale } from 'src/styles/types'
+import { Pokedex } from 'src/types/pokedex'
+
+import { styles } from './styles'
 
 interface PokemonCardProps {
   name: Pokedex['name']
@@ -60,7 +61,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = memo(
             {capitalize(name)}
           </StyledText>
         </StyledView>
-        <StyledView style={{ paddingVertical: 6 }}>{renderBadges}</StyledView>
+        <StyledView style={styles.badgesContainer}>{renderBadges}</StyledView>
         <StyledView style={styles.imageContainer}>
           <FastImage
             source={{ uri: getUri(pokemonEntry) }}

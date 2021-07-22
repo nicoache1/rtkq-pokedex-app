@@ -1,17 +1,18 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
+import PokeballIcon from 'src/assets/icons/pokeball.svg'
 import { SceneContainer } from 'src/components/SceneContainer'
 import { Routes } from 'src/navigation/routes'
 import { MainStackParamList } from 'src/navigation/stacks/MainStack'
-import { styles } from './styles'
-import PokeballIcon from 'src/assets/icons/pokeball.svg'
 import { colorTranslucent } from 'src/styles/Palette'
-import { PaletteScale } from 'src/styles/types'
-import { POKEBALL_SIZE } from './constants'
-import { MenuList } from './MenuList'
-import { useSetNavigationOptions } from './hooks/useSetNavigationOptions'
-import { NewsList } from './NewsList'
 import { useTheme } from 'src/styles/Theme'
+import { PaletteScale } from 'src/styles/types'
+
+import { POKEBALL_SIZE } from './constants'
+import { useSetNavigationOptions } from './hooks/useSetNavigationOptions'
+import { MenuList } from './MenuList'
+import { NewsList } from './NewsList'
+import { styles } from './styles'
 
 interface HomeProps extends StackScreenProps<MainStackParamList, Routes.Home> {}
 
