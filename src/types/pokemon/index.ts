@@ -88,32 +88,32 @@ export const deserializePokemons = (data: any): Pokemon[] => {
 }
 
 export const deserializePokemon = (data: any): Pokemon => ({
-  id: data.id,
-  name: data.name,
-  baseExperience: data.base_experience,
-  height: data.height,
-  isDefault: data.is_default,
-  order: data.order,
-  weight: data.weight,
   abilities: deserializeAbilities(data.abilities ?? []),
+  baseExperience: data.base_experience,
   forms: data.forms,
   gameIndices: deserializeGameIndices(data.game_indices ?? []),
+  height: data.height,
   heldItems: deserializeHeldItem(data.held_items ?? []),
+  id: data.id,
+  isDefault: data.is_default,
   locationAreaEncounters: data.location_area_encounters,
   moves: deserializeMoves(data.moves ?? []),
+  name: data.name,
+  order: data.order,
   species: data.species,
   sprite:
     data.sprites.other['official-artwork']?.front_default ??
     data.sprites?.front_default,
   stats: deserializeStats(data.stats ?? []),
   types: deserializeTypes(data.types ?? []),
+  weight: data.weight,
 })
 
 const deserializeAbilities = (data: any): Ability[] =>
   data.map((item: any) => ({
+    ability: item.ability,
     isHidden: item.is_hidden,
     slot: item.slot,
-    ability: item.ability,
   }))
 
 const deserializeGameIndices = (data: any): GameIndex[] =>
@@ -132,8 +132,8 @@ const deserializeMoves = (data: any): Move[] =>
     move: item.move,
     versionGroupDetails: item.version_group_details.map((newItem: any) => ({
       levelLearnedAt: newItem.level_learned_at,
-      versionGroup: newItem.version_group,
       moveLearnMethod: newItem.move_learn_method,
+      versionGroup: newItem.version_group,
     })),
   }))
 

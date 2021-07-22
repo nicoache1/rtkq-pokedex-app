@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
   },
   image: {
     height: 300,
+    zIndex: 100,
   },
   pokeballStyle: {
     left: width / 2 - POKEBALL_SIZE / 2,
