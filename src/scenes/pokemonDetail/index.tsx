@@ -15,6 +15,7 @@ import { useTheme } from 'src/styles/Theme'
 import { PaletteScale } from 'src/styles/types'
 
 import { About } from './About'
+import { BaseStats } from './BaseStats'
 import { POKEBALL_SIZE } from './constants'
 import { useSetNavigationOptions } from './hooks/useSetNavigationOptions'
 import { styles } from './styles'
@@ -23,10 +24,6 @@ const { width } = Dimensions.get('window')
 
 interface PokemonDetailProps
   extends StackScreenProps<MainStackParamList, Routes.PokemonDetail> {}
-
-const SecondRoute = () => (
-  <View style={{ backgroundColor: '#673ab7', flex: 1 }} />
-)
 
 const ThirdRoute = () => (
   <View style={{ backgroundColor: '#673a23', flex: 1 }} />
@@ -60,13 +57,6 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
 
   const pokemonName = route.params.name
 
-  const renderScene = SceneMap({
-    first: () => <About pokemonName={pokemonName} extraData={data} />,
-    fourth: FourthRoute,
-    second: SecondRoute,
-    third: ThirdRoute,
-  })
-
   const { data, isLoading } = useGetPokemonByNameQuery(pokemonName)
 
   const backgroundColor = lightenDarkenColor(
@@ -87,6 +77,13 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
   if (!data || isLoading) {
     return <ActivityIndicator />
   }
+
+  const renderScene = SceneMap({
+    first: () => <About pokemonName={pokemonName} extraData={data} />,
+    fourth: FourthRoute,
+    second: () => <BaseStats data={data} />,
+    third: ThirdRoute,
+  })
 
   return (
     <View

@@ -49,7 +49,7 @@ interface Move {
   }[]
 }
 
-interface Stats {
+export interface Stats {
   baseStat: number
   effort: number
   stat: PokemonURLResource

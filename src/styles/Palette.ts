@@ -4,6 +4,7 @@ export enum Colors {
   PRIMARY = '#006d77',
   SECONDARY = '#4E4848',
   ERROR = '#b00020',
+  SUCCESS = '#74c086',
   THIRD = '#9C572B',
   ON_SURFACE = '#ffffff',
   ON_SURFACE_HIGH_EMPHASIS = '#000000',
@@ -30,6 +31,7 @@ export const Palette: PaletteStyle<string> = {
   PRIMARY: Colors.PRIMARY,
   SECONDARY: Colors.SECONDARY,
   SEPARATOR: Colors.SEPARATOR,
+  SUCCESS: Colors.SUCCESS,
   THIRD: Colors.THIRD,
   TRANSPARENT: Colors.TRANSPARENT,
 }

@@ -15,7 +15,7 @@ import { styles } from './styles'
 
 interface AboutProps {
   pokemonName: string
-  extraData?: Pokemon
+  extraData: Pokemon
 }
 
 const transformHeight = (height: number) => {
