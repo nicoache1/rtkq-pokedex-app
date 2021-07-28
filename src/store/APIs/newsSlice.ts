@@ -3,7 +3,6 @@ import Config from 'react-native-config'
 import { deserializeNews, News } from 'src/types/news'
 
 export const newsApi = createApi({
-  reducerPath: 'newsApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://newsapi.org/v2/',
   }),
@@ -14,6 +13,7 @@ export const newsApi = createApi({
       transformResponse: (response: any) => deserializeNews(response.articles),
     }),
   }),
+  reducerPath: 'newsApi',
 })
 
 export const {

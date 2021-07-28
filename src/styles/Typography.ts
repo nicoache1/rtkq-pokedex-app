@@ -5,23 +5,23 @@ import { TypographyScale, TypographyStyle } from './types'
 export const Typography: TypographyStyle<TextStyle> = {
   [TypographyScale.H0_HEADLINE]: {
     fontSize: 54,
-    letterSpacing: 0.15,
     fontWeight: 'bold',
+    letterSpacing: 0.15,
   },
   [TypographyScale.H1_HEADLINE]: {
     fontSize: 36,
-    letterSpacing: 0.15,
     fontWeight: 'bold',
+    letterSpacing: 0.15,
   },
   [TypographyScale.H2_HEADLINE]: {
     fontSize: 28,
-    letterSpacing: 0.15,
     fontWeight: 'bold',
+    letterSpacing: 0.15,
   },
   [TypographyScale.H3_HEADLINE]: {
     fontSize: 22,
-    letterSpacing: 0.15,
     fontWeight: 'bold',
+    letterSpacing: 0.15,
   },
   [TypographyScale.SUBTITLE1]: {
     fontSize: 18,
@@ -44,7 +44,7 @@ export const Typography: TypographyStyle<TextStyle> = {
     letterSpacing: 0.27,
   },
   [TypographyScale.BUTTON]: {
-    fontSize: 46,
+    fontSize: 16,
     fontWeight: 'bold',
     letterSpacing: 1.35,
     textTransform: 'uppercase',
@@ -55,7 +55,7 @@ export const Typography: TypographyStyle<TextStyle> = {
     lineHeight: 16,
   },
   [TypographyScale.OVERLINE]: {
-    fontSize: 14,
+    fontSize: 12,
     letterSpacing: 0.43,
     lineHeight: 16,
   },

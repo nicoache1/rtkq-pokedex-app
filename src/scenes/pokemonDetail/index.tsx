@@ -3,39 +3,26 @@ import React, { useState } from 'react'
 import { Dimensions } from 'react-native'
 import { ActivityIndicator, View } from 'react-native'
 import FastImage from 'react-native-fast-image'
-import {
-  SceneMap,
-  SceneRendererProps,
-  TabBar,
-  TabBarProps,
-  TabView,
-  TabViewProps,
-} from 'react-native-tab-view'
+import { SceneMap, TabBar, TabView, TabViewProps } from 'react-native-tab-view'
 import PokeballIcon from 'src/assets/icons/pokeball.svg'
 import { SceneContainer } from 'src/components/SceneContainer'
 import { StyledContainer } from 'src/components/StyledContainer'
 import { Routes } from 'src/navigation/routes'
 import { MainStackParamList } from 'src/navigation/stacks/MainStack'
-import {
-  useGetPokemonByNameQuery,
-  useGetPokemonSpeciesQuery,
-} from 'src/store/APIs/pokemonSlice'
+import { useGetPokemonByNameQuery } from 'src/store/APIs/pokemonSlice'
 import { colorTranslucent, lightenDarkenColor } from 'src/styles/Palette'
 import { useTheme } from 'src/styles/Theme'
 import { PaletteScale } from 'src/styles/types'
 
-import { HEADER_HEIGHT, POKEBALL_SIZE } from './constants'
+import { About } from './About'
+import { POKEBALL_SIZE } from './constants'
 import { useSetNavigationOptions } from './hooks/useSetNavigationOptions'
 import { styles } from './styles'
 
-const { width, height } = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
 interface PokemonDetailProps
   extends StackScreenProps<MainStackParamList, Routes.PokemonDetail> {}
-
-const FirstRoute = () => (
-  <View style={{ backgroundColor: '#ff4081', flex: 1 }} />
-)
 
 const SecondRoute = () => (
   <View style={{ backgroundColor: '#673ab7', flex: 1 }} />
@@ -48,28 +35,22 @@ const FourthRoute = () => (
   <View style={{ backgroundColor: '#43a432', flex: 1 }} />
 )
 
-const renderTabBar: TabViewProps<any>['renderTabBar'] = props => (
-  <TabBar
-    {...props}
-    indicatorStyle={{
-      backgroundColor: 'blue',
-    }}
-    style={{ backgroundColor: 'white' }}
-    labelStyle={{ color: 'blue', fontSize: 12 }}
-    activeColor={'black'}
-    inactiveColor={'black'}
-  />
-)
+const RenderTabBar: TabViewProps<any>['renderTabBar'] = props => {
+  const { Theme } = useTheme()
 
-const renderScene = SceneMap({
-  first: FirstRoute,
-  fourth: FourthRoute,
-  second: SecondRoute,
-  third: ThirdRoute,
-})
-
-const IMAGE_SIZE = 300
-const TAB_VIEW_HEIGHT = height - (HEADER_HEIGHT + IMAGE_SIZE)
+  return (
+    <TabBar
+      {...props}
+      indicatorStyle={{
+        backgroundColor: Theme.colors.PRIMARY,
+      }}
+      style={{ backgroundColor: Theme.colors.ON_SURFACE }}
+      labelStyle={{ ...Theme.typography.OVERLINE }}
+      activeColor={Theme.colors.ON_SURFACE_HIGH_EMPHASIS}
+      inactiveColor={Theme.colors.ON_SURFACE_HIGH_EMPHASIS}
+    />
+  )
+}
 
 export const PokemonDetail: React.FC<PokemonDetailProps> = ({
   navigation,
@@ -79,8 +60,13 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
 
   const pokemonName = route.params.name
 
-  const { data: speciesData, isLoading: isSpeciesLoading } =
-    useGetPokemonSpeciesQuery(pokemonName)
+  const renderScene = SceneMap({
+    first: () => <About pokemonName={pokemonName} extraData={data} />,
+    fourth: FourthRoute,
+    second: SecondRoute,
+    third: ThirdRoute,
+  })
+
   const { data, isLoading } = useGetPokemonByNameQuery(pokemonName)
 
   const backgroundColor = lightenDarkenColor(
@@ -98,7 +84,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
     { key: 'fourth', title: 'Moves' },
   ])
 
-  if (!data || isLoading || isSpeciesLoading || !speciesData) {
+  if (!data || isLoading) {
     return <ActivityIndicator />
   }
 
@@ -123,27 +109,14 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
             style={styles.image}
             resizeMode={'contain'}
           />
-          <View
-            style={{
-              bottom: 0,
-              height: TAB_VIEW_HEIGHT,
-              left: 0,
-              position: 'absolute',
-              right: 0,
-              top: IMAGE_SIZE - 50,
-            }}>
+          <View style={styles.tabContainer}>
             <TabView
-              style={{
-                backgroundColor: 'white',
-                borderTopLeftRadius: 32,
-                borderTopRightRadius: 32,
-                paddingTop: 30,
-              }}
+              style={styles.tabView}
               navigationState={{ index, routes }}
               renderScene={renderScene}
               onIndexChange={setIndex}
               initialLayout={{ width }}
-              renderTabBar={renderTabBar}
+              renderTabBar={RenderTabBar}
             />
           </View>
         </StyledContainer>
