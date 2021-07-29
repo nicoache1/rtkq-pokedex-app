@@ -29,9 +29,6 @@ interface PokemonDetailProps
 const ThirdRoute = () => (
   <View style={{ backgroundColor: '#673a23', flex: 1 }} />
 )
-const FourthRoute = () => (
-  <View style={{ backgroundColor: '#43a432', flex: 1 }} />
-)
 
 const RenderTabBar: TabViewProps<any>['renderTabBar'] = props => {
   const { Theme } = useTheme()

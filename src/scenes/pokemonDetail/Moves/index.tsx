@@ -1,9 +1,9 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { StyledContainer } from 'src/components/StyledContainer'
-import { StyledText } from 'src/components/StyledText'
 import { Pokemon } from 'src/types/pokemon'
+
+import { Move } from './Move'
 
 interface MovesProps {
   data: Pokemon
@@ -12,6 +12,7 @@ interface MovesProps {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingVertical: 20,
   },
 })
 
@@ -21,16 +22,7 @@ export const Moves: React.FC<MovesProps> = ({ data }) => {
   return (
     <ScrollView style={styles.container}>
       {moves.map(move => (
-        <StyledContainer>
-          <View style={{ flex: 1 }}>
-            <StyledText>{move.move.name}</StyledText>
-          </View>
-          <View style={{ flex: 1 }}>
-            <StyledText>
-              {move.versionGroupDetails[0].levelLearnedAt}
-            </StyledText>
-          </View>
-        </StyledContainer>
+        <Move move={move} />
       ))}
     </ScrollView>
   )
