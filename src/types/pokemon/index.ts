@@ -40,7 +40,7 @@ interface HeldItem {
   item: PokemonURLResource
 }
 
-interface Move {
+export interface Move {
   move: PokemonURLResource
   versionGroupDetails: {
     levelLearnedAt: number

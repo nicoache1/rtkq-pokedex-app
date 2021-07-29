@@ -18,6 +18,7 @@ import { About } from './About'
 import { BaseStats } from './BaseStats'
 import { POKEBALL_SIZE } from './constants'
 import { useSetNavigationOptions } from './hooks/useSetNavigationOptions'
+import { Moves } from './Moves'
 import { styles } from './styles'
 
 const { width } = Dimensions.get('window')
@@ -80,7 +81,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
 
   const renderScene = SceneMap({
     first: () => <About pokemonName={pokemonName} extraData={data} />,
-    fourth: FourthRoute,
+    fourth: () => <Moves data={data} />,
     second: () => <BaseStats data={data} />,
     third: ThirdRoute,
   })
