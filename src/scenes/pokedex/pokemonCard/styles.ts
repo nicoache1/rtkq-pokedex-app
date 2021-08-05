@@ -1,49 +1,54 @@
 import { Dimensions, StyleSheet } from 'react-native'
 
+import { CARD_SIZE } from '../constants'
+
 const { width } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
+  badge: {
+    alignItems: 'center',
+    borderRadius: 16,
+    height: 20,
+    justifyContent: 'center',
+    marginVertical: 3,
+    width: 70,
+  },
+  badgesContainer: {
+    paddingVertical: 6,
+  },
   container: {
-    height: 130,
-    width: width / 2 - 16,
+    borderRadius: 16,
+    elevation: 5,
+    height: CARD_SIZE,
     margin: 8,
+    overflow: 'hidden',
     paddingHorizontal: 20,
     paddingVertical: 10,
     shadowColor: '#000',
     shadowOffset: {
-      width: 0,
       height: 2,
+      width: 0,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
-    borderRadius: 16,
-    overflow: 'hidden',
-  },
-  textContainer: {
-    alignItems: 'flex-start',
-  },
-  pokeballIcon: {
-    position: 'absolute',
-    right: -30,
-    bottom: -30,
-  },
-  badge: {
-    width: 70,
-    height: 20,
-    marginVertical: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 16,
-  },
-  imageContainer: {
-    right: 0,
-    bottom: 0,
-    position: 'absolute',
-    height: 100,
-    width: 100,
+    width: width / 2 - 16,
   },
   image: {
     height: 100,
+  },
+  imageContainer: {
+    bottom: 0,
+    height: 100,
+    position: 'absolute',
+    right: 0,
+    width: 100,
+  },
+  pokeballIcon: {
+    bottom: -30,
+    position: 'absolute',
+    right: -30,
+  },
+  textContainer: {
+    alignItems: 'flex-start',
   },
 })
