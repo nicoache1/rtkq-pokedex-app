@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import { TextStyle } from 'react-native'
 
 export interface ITheme {
@@ -39,6 +38,7 @@ export enum PaletteScale {
   'PRIMARY' = 'PRIMARY',
   'SECONDARY' = 'SECONDARY',
   'ERROR' = 'ERROR',
+  'SUCCESS' = 'SUCCESS',
   'THIRD' = 'THIRD',
   'ON_SURFACE' = 'ON_SURFACE',
   'ON_SURFACE_HIGH_EMPHASIS' = 'ON_SURFACE_HIGH_EMPHASIS',
@@ -56,6 +56,7 @@ export interface PaletteStyle<T> {
   [PaletteScale.PRIMARY]: T
   [PaletteScale.SECONDARY]: T
   [PaletteScale.ERROR]: T
+  [PaletteScale.SUCCESS]: T
   [PaletteScale.THIRD]: T
   [PaletteScale.ON_SURFACE]: T
   [PaletteScale.ON_SURFACE_HIGH_EMPHASIS]: T

@@ -1,10 +1,10 @@
 import { PaletteScale, PaletteStyle } from './types'
 
-// eslint-disable-next-line no-shadow
 export enum Colors {
   PRIMARY = '#006d77',
   SECONDARY = '#4E4848',
   ERROR = '#b00020',
+  SUCCESS = '#74c086',
   THIRD = '#9C572B',
   ON_SURFACE = '#ffffff',
   ON_SURFACE_HIGH_EMPHASIS = '#000000',
@@ -13,7 +13,7 @@ export enum Colors {
   BACKGROUND = '#f0f3fa',
   BACKGROUND_HIGH_EMPHASIS = '#000000',
   BACKGROUND_MID_EMPHASIS = '#616161',
-  BACKGROUND_LOW_EMPHASIS = '#C4C4C4',
+  BACKGROUND_LOW_EMPHASIS = '#f3f3f3',
   SEPARATOR = '#9C572B',
   TRANSPARENT = 'transparent',
 }
@@ -31,6 +31,7 @@ export const Palette: PaletteStyle<string> = {
   PRIMARY: Colors.PRIMARY,
   SECONDARY: Colors.SECONDARY,
   SEPARATOR: Colors.SEPARATOR,
+  SUCCESS: Colors.SUCCESS,
   THIRD: Colors.THIRD,
   TRANSPARENT: Colors.TRANSPARENT,
 }
@@ -60,28 +61,32 @@ export function blackTranslucent(opacity: number) {
 
 export const lightenDarkenColor = (col: string, amt: number) => {
   var usePound = false
-  if (col[0] == '#') {
+  if (col[0] === '#') {
     col = col.slice(1)
     usePound = true
   }
   var num = parseInt(col, 16)
+  // eslint-disable-next-line no-bitwise
   var r = (num >> 16) + amt
   if (r > 255) {
     r = 255
   } else if (r < 0) {
     r = 0
   }
+  // eslint-disable-next-line no-bitwise
   var b = ((num >> 8) & 0x00ff) + amt
   if (b > 255) {
     b = 255
   } else if (b < 0) {
     b = 0
   }
+  // eslint-disable-next-line no-bitwise
   var g = (num & 0x0000ff) + amt
   if (g > 255) {
     g = 255
   } else if (g < 0) {
     g = 0
   }
+  // eslint-disable-next-line no-bitwise
   return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16)
 }

@@ -1,10 +1,8 @@
 module.exports = {
-  root: true,
   extends: [
     '@react-native-community',
     'plugin:prettier/recommended',
     'prettier',
-    ,
   ],
   parser: '@typescript-eslint/parser',
   plugins: [
@@ -12,19 +10,18 @@ module.exports = {
     'simple-import-sort',
     'sort-keys-fix',
     'prettier',
-    ,
   ],
+  root: true,
   rules: {
-    'prettier/prettier': 'error',
-    'sort-keys-fix/sort-keys-fix': 'warn',
-    semi: ['off'],
-    'simple-import-sort/imports': 'error',
-    'simple-import-sort/exports': 'error',
-    'no-console': ['error', {allow: ['warn']}],
-    'sort-keys': 'error',
-    'sort-imports': 'off',
     'import/order': 'off',
+    'no-console': ['error', { allow: ['warn'] }],
     'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': 'error',
+    'prettier/prettier': 'error',
+    semi: ['off'],
+    'simple-import-sort/exports': 'error',
+    'simple-import-sort/imports': 'error',
+    'sort-imports': 'off',
+    'sort-keys': 'error',
+    'sort-keys-fix/sort-keys-fix': 'warn',
   },
-};
+}

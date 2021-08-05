@@ -1,11 +1,12 @@
 import { Dimensions, StyleSheet } from 'react-native'
+import { CARD_HEIGHT } from '../../constants'
 
 const { width } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
   container: {
-    height: 130,
-    width: width / 2 - 16,
+    height: CARD_HEIGHT,
+    width: width / 2 - 36,
     margin: 8,
     paddingHorizontal: 20,
     paddingVertical: 10,
@@ -22,11 +23,13 @@ export const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: 'flex-start',
+    justifyContent: 'center',
+    flex: 1,
   },
   pokeballIcon: {
     position: 'absolute',
-    right: -30,
-    bottom: -30,
+    right: -20,
+    top: 0,
   },
   badge: {
     width: 70,

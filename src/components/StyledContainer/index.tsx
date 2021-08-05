@@ -9,7 +9,7 @@ type CustomViewProps = {
   children?: React.ReactNode
 } & ViewProps
 
-export const StyledContainer: React.FC<CustomViewProps> = (props) => {
+export const StyledContainer: React.FC<CustomViewProps> = props => {
   const { Theme: ActualTheme } = useContext(ThemeContext)
 
   const { color, style, children } = props
