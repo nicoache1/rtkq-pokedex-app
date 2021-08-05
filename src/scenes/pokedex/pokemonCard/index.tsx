@@ -3,6 +3,7 @@ import React, { memo } from 'react'
 import { Pressable, View } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import PokeballIcon from 'src/assets/icons/pokeball.svg'
+import { getPokemonImage } from 'src/common/pokemon'
 import { StyledText } from 'src/components/StyledText'
 import { StyledView } from 'src/components/StyledView'
 import { TypeBadge } from 'src/components/TypeBadge'
@@ -17,16 +18,6 @@ interface PokemonCardProps {
   name: Pokedex['name']
   onPress: () => void
   index: number
-}
-
-const getUri = (pokedexNumber: number) => {
-  if (pokedexNumber < 10) {
-    return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/00${pokedexNumber}.png`
-  }
-  if (pokedexNumber < 100) {
-    return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/0${pokedexNumber}.png`
-  }
-  return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokedexNumber}.png`
 }
 
 export const PokemonCard: React.FC<PokemonCardProps> = memo(
@@ -64,7 +55,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = memo(
         <StyledView style={styles.badgesContainer}>{renderBadges}</StyledView>
         <StyledView style={styles.imageContainer}>
           <FastImage
-            source={{ uri: getUri(pokemonEntry) }}
+            source={{ uri: getPokemonImage(pokemonEntry) }}
             style={styles.image}
             resizeMode={'contain'}
           />

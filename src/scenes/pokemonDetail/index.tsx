@@ -17,6 +17,7 @@ import { PaletteScale } from 'src/styles/types'
 import { About } from './About'
 import { BaseStats } from './BaseStats'
 import { POKEBALL_SIZE } from './constants'
+import { Evolution } from './Evolution'
 import { useSetNavigationOptions } from './hooks/useSetNavigationOptions'
 import { Moves } from './Moves'
 import { styles } from './styles'
@@ -26,13 +27,8 @@ const { width } = Dimensions.get('window')
 interface PokemonDetailProps
   extends StackScreenProps<MainStackParamList, Routes.PokemonDetail> {}
 
-const ThirdRoute = () => (
-  <View style={{ backgroundColor: '#673a23', flex: 1 }} />
-)
-
 const RenderTabBar: TabViewProps<any>['renderTabBar'] = props => {
   const { Theme } = useTheme()
-
   return (
     <TabBar
       {...props}
@@ -80,7 +76,7 @@ export const PokemonDetail: React.FC<PokemonDetailProps> = ({
     first: () => <About pokemonName={pokemonName} extraData={data} />,
     fourth: () => <Moves data={data} />,
     second: () => <BaseStats data={data} />,
-    third: ThirdRoute,
+    third: () => <Evolution pokemonName={pokemonName} />,
   })
 
   return (

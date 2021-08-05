@@ -10,11 +10,13 @@ export interface PokemonSpecies {
   eggGroups: PokemonURLResource[]
   shape: PokemonURLResource
   genderRate: number
+  evolutionChain: PokemonURLResource
 }
 
 export const deserializePokemonSpecies = (data: any): PokemonSpecies => ({
   about: deserializeTextEntry(data.flavor_text_entries),
   eggGroups: deserializeEggGroups(data.egg_groups),
+  evolutionChain: data.evolution_chain,
   genderRate: data.gender_rate,
   id: data.id,
   isBaby: data.isBaby,
