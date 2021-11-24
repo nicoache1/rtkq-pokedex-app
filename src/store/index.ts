@@ -1,9 +1,9 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import thunk from 'redux-thunk'
+
 import { newsApi } from './APIs/newsSlice'
 import { pokemonApi } from './APIs/pokemonSlice'
-
 import { ReduxState, rootReducer } from './rootReducer'
 
 const middlewares = [thunk, pokemonApi.middleware, newsApi.middleware]
@@ -15,8 +15,8 @@ if (__DEV__) {
 }
 
 const store = configureStore({
-  reducer: rootReducer,
   middleware: middlewares,
+  reducer: rootReducer,
 })
 
 setupListeners(store.dispatch)
